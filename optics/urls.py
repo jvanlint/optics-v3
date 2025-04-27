@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
+def root_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    return redirect('account_login')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Entry point: redirect root to login
-    path('', RedirectView.as_view(pattern_name='account_login', permanent=False)),
+    path('', root_view, name='root'),
+    path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
     path('accounts/', include('allauth.urls')),
 ]
