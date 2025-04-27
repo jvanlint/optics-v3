@@ -30,7 +30,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=Csv())
 
 # FORM SUBMISSION
-CSRF_TRUSTED_ORIGINS = "http://django-server-production-ff1f.up.railway.app"
+CSRF_TRUSTED_ORIGINS = 'http://django-server-production-ff1f.up.railway.app', 'https://django-server-production-ff1f.up.railway.app'
 
 # Application definition
 
