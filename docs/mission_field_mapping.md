@@ -42,8 +42,6 @@ This document describes how fields in the Mission model map to data extracted fr
 |-------------------|------------------|-------------|---------|
 | `bullseye` | `bullseye` | Bulls eye coordinates | JSON: `{"lat": float, "long": float}` |
 
-
-
 ## Notes
 
 1. All JSON fields (`wind_at_ground`, `wind_at_2000`, `wind_at_8000`, `bullseye`) should be initialized as empty dictionaries if no data is available.
@@ -51,4 +49,4 @@ This document describes how fields in the Mission model map to data extracted fr
 3. Date fields should be in ISO format (YYYY-MM-DD).
 4. Wind direction values should be in degrees (0-360).
 5. Wind speed values should be in knots.
-6. The `status` field is managed by the application and not extracted from the Lua file. 
+6. The `status` field is managed by the application and not extracted from the Lua file.

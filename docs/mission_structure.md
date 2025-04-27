@@ -37,6 +37,7 @@ The process of uploading and displaying mission information follows these steps:
 
 5. **Data Organization**
    - The parsed data is organized into a structured format:
+
      ```python
      {
          'weather': {...},
@@ -162,12 +163,14 @@ mission
 ## Structure Explanation
 
 ### Map Section
+
 - Contains information about the mission map view
 - `centerX` and `centerY`: Center point of the map view in meters
 - `zoom`: Current zoom level of the map view
 - These coordinates use the same Cartesian system as other coordinates in the mission
 
 ### Bullseye
+
 - The bullseye is a reference point specific to each coalition
 - Located under the coalition structure (blue/red)
 - Coordinates are in meters relative to the map origin (0,0)
@@ -179,6 +182,7 @@ mission
 ## Coordinate Conversion
 
 DCS maps use a Cartesian coordinate system where:
+
 - Origin (0,0) is specific to each map
 - X increases eastward (in meters)
 - Y increases northward (in meters)
@@ -231,11 +235,13 @@ Each DCS map has specific projection parameters stored in a JSON configuration:
 ```
 
 The mission's `map` section can help verify coordinate conversions:
+
 1. The `centerX` and `centerY` values provide a known reference point
 2. These coordinates correspond to the center of the map view
 3. Can be used with the map's origin point to verify coordinate calculations
 
 Common DCS Map References:
+
 - Persian Gulf: Origin = N26°10'16" E56°14'32" (verified from point N26°10'08" E56°14'21" at x:-306.45507484033, y:-253.39956020314)
   - Projection Parameters:
     - Central Meridian: 57°E
@@ -258,11 +264,13 @@ Common DCS Map References:
 Note: The Persian Gulf parameters have been verified with actual mission data. Other map parameters are approximate and should be verified with known points.
 
 ### Group Level
+
 - Each group represents a formation of aircraft
 - Groups have their own radio frequency
 - Groups contain individual units and a route plan
 
 ### Unit Level
+
 - Units represent individual aircraft within a group
 - Each unit has:
   - Type (aircraft model)
@@ -270,17 +278,20 @@ Note: The Persian Gulf parameters have been verified with actual mission data. O
   - Name
   - Callsign
   - Heading (in radians, where 0 is north)
+
     ```python
     # Convert heading from radians to degrees
     heading_degrees = math.degrees(heading_radians)
     # Example: 1.4412992439976 radians ≈ 82.6 degrees
     ```
+
     - 0 radians = 0° (North)
     - π/2 radians ≈ 1.5708 = 90° (East)
     - π radians ≈ 3.1416 = 180° (South)
     - 3π/2 radians ≈ 4.7124 = 270° (West)
 
 ### Route and Waypoints
+
 - Routes are composed of ordered points (waypoints)
 - Each waypoint (point) has:
   - Name
@@ -291,10 +302,11 @@ Note: The Persian Gulf parameters have been verified with actual mission data. O
   - Tasks to perform
 
 ## Access Pattern
+
 - Countries are accessed via index: `country[x]`
 - Groups within countries: `group[y]`
 - Units within groups: `units[z]`
 - Waypoints in route: `points[i]`
 - Tasks at waypoints: `task[j]`
 
-This structure allows for complex mission planning with multiple aircraft groups, each following their own route with specific tasks at designated waypoints. 
+This structure allows for complex mission planning with multiple aircraft groups, each following their own route with specific tasks at designated waypoints.

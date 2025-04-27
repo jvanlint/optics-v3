@@ -1,0 +1,32 @@
+{
+  "name": "Django Dev Container",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "njpwerner.autodocstring",
+        "aaron-bond.better-comments",
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        "docker.docker",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ZainChen.json",
+        "emilast.LogFileHighlighter",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "charliermarsh.ruff",
+        "ms-vscode.vscode-speech"
+      ]
+    }
+  },
+  "forwardPorts": [8000],
+  "postCreateCommand": "python manage.py migrate",
+  "remoteUser": "root"
+}
