@@ -22,3 +22,17 @@ COPY ../requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Install other dependencies as needed
+
+# Install Node.js and npm
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Verify installations
+RUN node --version && npm --version
+
+# Install Tailwind CSS globally
+RUN npm install -g tailwindcss

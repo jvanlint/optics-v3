@@ -1,11 +1,20 @@
 # Django core framework
 Django==5.2.0
 
-# Authentication and authorization
-django-allauth==65.4.1  # Authentication, registration, account management
-requests==2.32.3        # HTTP library for Python
-PyJWT==2.10.1           # JSON Web Token implementation
-cryptography==44.0.2    # Cryptographic recipes and primitives 
+# Authentication
+django-allauth==0.61.1
+
+# CSS Framework
+django-tailwind==3.8.0
+
+# HTTP library for Python
+requests==2.32.3
+
+# JSON Web Token implementation
+PyJWT==2.10.1
+
+# Cryptographic recipes and primitives 
+cryptography==44.0.2    
 
 # Database drivers
 psycopg2==2.9.9

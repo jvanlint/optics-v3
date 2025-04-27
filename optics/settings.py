@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # Add social providers here as needed, e.g.:
-    # 'allauth.socialaccount.providers.google',
+    # Tailwind app
+    'tailwind',
+    'apps.theme',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'apps', 'allauth', 'templates'),
         ],
         'APP_DIRS': True,
@@ -135,8 +137,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "apps", "allauth", "static"),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default primary key field type
@@ -162,3 +167,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 # False: Session cookies (forget at browser close)
 # True: Persistent cookies (remember user)
 ACCOUNT_SESSION_REMEMBER = True
+
+# Tailwind configuration
+TAILWIND_APP_NAME = 'apps.theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+    "192.168.1.1",
+    "10.0.0.1",
+    "0.0.0.0",
+    "localhost",
+]

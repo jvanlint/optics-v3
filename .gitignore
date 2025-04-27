@@ -131,3 +131,16 @@ cython_debug/
 
 # LSP config files
 pyrightconfig.json
+
+# Node
+node_modules/
+apps/theme/node_modules/
+apps/theme/package-lock.json
+apps/theme/package.json
+
+# Tailwind Dev files
+apps/theme/static_src/
+apps/theme/tailwind.config.js
+apps/theme/postcss.config.js
+
+apps/.DS_Store

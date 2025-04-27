@@ -1,21 +1,137 @@
+{% extends "base.html" %}
 {% load i18n %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{% trans "Login" %}</title>
-</head>
-<body>
-    <h2>{% trans "Login" %}</h2>
-    <form method="post" action="{% url 'account_login' %}">
+{% load static %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="flex w-full max-w-4xl bg-white rounded-2xl shadow-lg overflow-hidden">
+    <!-- Left: Image -->
+    <div class="hidden md:block md:w-1/2">
+      <img src="{% static 'allauth/media/shutterstock_2290068515.jpg' %}"
+           alt="Jet flying at sunset"
+           class="h-full w-full object-cover"/>
+      <!-- Fallback text for debugging -->
+      <noscript>Image should appear here</noscript>
+    </div>
+    <!-- Static path debug -->
+    <div class="hidden">
+      {% static 'allauth/media/f-16-fighting-falcon_002.jpg' %}
+    </div>
+    <!-- Right: Login Form -->
+    <div class="w-full md:w-1/2 p-10 flex flex-col justify-center">
+      <h2 class="text-center text-3xl font-bold text-gray-900 mb-1">
+        {% trans "Welcome back" %}
+      </h2>
+      <p class="text-center text-gray-500 mb-6">
+        {% trans "Please sign in to your account" %}
+      </p>
+
+      {% get_providers as socialaccount_providers %}
+      {% if socialaccount_providers %}
+      <div class="space-y-3 mb-4">
+        {% for provider in socialaccount_providers %}
+        <a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
+           class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md bg-white text-base font-medium text-gray-700 hover:bg-gray-50 transition">
+          {% if provider.id == "discord" %}
+            <svg class="h-5 w-5 mr-2 text-indigo-600" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.369A19.791 19.791 0 0016.885 3.2a.074.074 0 00-.079.037c-.34.6-.719 1.381-.984 2.013a18.524 18.524 0 00-5.447 0 12.683 12.683 0 00-.997-2.013.077.077 0 00-.079-.037c-1.432.327-2.814.812-4.105 1.444a.069.069 0 00-.032.027C.533 9.045-.32 13.579.099 18.057a.082.082 0 00.031.056c1.733 1.277 3.415 2.052 5.077 2.568a.077.077 0 00.084-.027c.391-.535.74-1.1 1.045-1.691a.076.076 0 00-.041-.104c-.552-.208-1.077-.462-1.588-.747a.077.077 0 01-.008-.128c.107-.08.214-.163.316-.246a.074.074 0 01.077-.01c3.304 1.515 6.872 1.515 10.146 0a.075.075 0 01.078.009c.102.083.209.166.316.246a.077.077 0 01-.006.128 12.298 12.298 0 01-1.589.748.076.076 0 00-.04.103c.305.591.654 1.156 1.045 1.691a.076.076 0 00.084.028c1.663-.516 3.345-1.291 5.078-2.568a.077.077 0 00.03-.055c.5-5.177-.838-9.673-3.548-13.661a.061.061 0 00-.03-.028zM8.02 15.331c-1.018 0-1.849-.928-1.849-2.065 0-1.137.818-2.065 1.849-2.065 1.04 0 1.87.937 1.849 2.065 0 1.137-.818 2.065-1.849 2.065zm7.974 0c-1.018 0-1.849-.928-1.849-2.065 0-1.137.818-2.065 1.849-2.065 1.04 0 1.87.937 1.849 2.065 0 1.137-.809 2.065-1.849 2.065z"/></svg>
+            Continue with Discord
+          {% elif provider.id == "google" %}
+            <svg class="h-5 w-5 mr-2 text-red-500" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.61l6.88-6.88C36.36 2.69 30.61 0 24 0 14.82 0 6.71 5.82 2.69 14.09l7.98 6.19C12.13 13.13 17.56 9.5 24 9.5z"/><path fill="#34A853" d="M46.1 24.5c0-1.64-.15-3.22-.43-4.74H24v9.04h12.44c-.54 2.91-2.18 5.38-4.66 7.04l7.19 5.6C43.98 37.04 46.1 31.34 46.1 24.5z"/><path fill="#FBBC05" d="M10.67 28.28A14.48 14.48 0 009.5 24c0-1.49.26-2.93.72-4.28l-7.98-6.19A23.93 23.93 0 000 24c0 3.93.94 7.65 2.61 10.97l8.06-6.69z"/><path fill="#EA4335" d="M24 48c6.61 0 12.16-2.18 16.21-5.94l-7.19-5.6c-2.01 1.35-4.59 2.16-9.02 2.16-6.44 0-11.87-3.63-14.33-8.91l-8.06 6.69C6.71 42.18 14.82 48 24 48z"/></g></svg>
+            Continue with Google
+          {% else %}
+            {{ provider.name }}
+          {% endif %}
+        </a>
+        {% endfor %}
+      </div>
+      <div class="flex items-center my-4">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="mx-2 text-gray-400 text-sm">{% trans "Or continue with" %}</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+      {% endif %}
+
+      <form class="space-y-4" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% trans "Sign In" %}</button>
-    </form>
-    <p>
-        <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-    </p>
-    <p>
-        <a href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-    </p>
-</body>
-</html>
+        {% if form.errors %}
+        <div class="rounded-md bg-red-50 p-4 mb-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                {% trans "There was a problem with your login information." %}
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                      <li>{{ error }}</li>
+                    {% endfor %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <div>
+          <label for="id_login" class="sr-only">{% trans "Email address" %}</label>
+          <input id="id_login" name="login" type="text" autocomplete="email" required
+                 class="appearance-none rounded-md block w-full px-3 py-2 border border-gray-300
+                        placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-blue-500
+                        focus:border-blue-500 sm:text-base"
+                 placeholder="{% trans 'Email address' %}">
+        </div>
+        <div>
+          <label for="id_password" class="sr-only">{% trans "Password" %}</label>
+          <input id="id_password" name="password" type="password" autocomplete="current-password" required
+                 class="appearance-none rounded-md block w-full px-3 py-2 border border-gray-300
+                        placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-blue-500
+                        focus:border-blue-500 sm:text-base"
+                 placeholder="{% trans 'Password' %}">
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input id="id_remember" name="remember" type="checkbox"
+                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+            <label for="id_remember" class="ml-2 block text-sm text-gray-900">
+              {% trans "Remember me" %}
+            </label>
+          </div>
+          <div class="text-sm">
+            <a href="{% url 'account_reset_password' %}" class="font-medium text-blue-600 hover:text-blue-500">
+              {% trans "Forgot password?" %}
+            </a>
+          </div>
+        </div>
+
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <div>
+          <button type="submit"
+                  class="w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            {% trans "Sign in" %}
+          </button>
+        </div>
+      </form>
+      <p class="mt-6 text-center text-sm text-gray-600">
+        {% trans "Don't have an account?" %}
+        <a href="{% url 'account_signup' %}" class="font-medium text-blue-600 hover:text-blue-500">
+          {% trans "Sign up" %}
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
