@@ -1,6 +1,18 @@
-asgiref==3.8.1
+# Django core framework
 Django==5.2.0
-gunicorn==22.0.0
+
+# Database drivers
 psycopg2==2.9.9
 sqlparse==0.5.0
+
+# ASGI support
+asgiref==3.8.1
+
+# Production server
+gunicorn==22.0.0
+
+# Static files handling
 whitenoise==6.7.0
+
+# Environment variable management
+python-decouple==3.8
