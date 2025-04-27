@@ -1,7 +1,7 @@
 {
   "name": "Django Dev Container",
   "build": {
-    "dockerfile": "../Dockerfile"
+    "dockerfile": "../Docker/Dockerfile"
   },
   "customizations": {
     "vscode": {
@@ -26,7 +26,9 @@
       ]
     }
   },
-  "forwardPorts": [8000],
+  "forwardPorts": [
+    8000
+  ],
   "postCreateCommand": "python manage.py migrate",
   "remoteUser": "root"
 }
