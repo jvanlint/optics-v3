@@ -1,6 +1,7 @@
 {
   "name": "Django Dev Container",
   "build": {
+    "context": "..",
     "dockerfile": "../Docker/Dockerfile"
   },
   "customizations": {
