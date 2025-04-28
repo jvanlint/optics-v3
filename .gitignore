@@ -139,7 +139,6 @@ apps/theme/package-lock.json
 apps/theme/package.json
 
 # Tailwind Dev files
-apps/theme/static_src/
 apps/theme/tailwind.config.js
 apps/theme/postcss.config.js
 
