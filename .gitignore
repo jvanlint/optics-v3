@@ -143,4 +143,9 @@ apps/theme/static_src/
 apps/theme/tailwind.config.js
 apps/theme/postcss.config.js
 
+# Do NOT ignore built static files
+# (allow apps/theme/static/css/dist/styles.css to be committed)
+# If you had a rule like this, remove or comment it out:
+# apps/theme/static/
+
 apps/.DS_Store

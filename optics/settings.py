@@ -141,6 +141,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "apps", "allauth", "static"),
+    os.path.join(BASE_DIR, "apps", "theme", "static"),  # <-- Add this line
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
