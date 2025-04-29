@@ -135,8 +135,7 @@ pyrightconfig.json
 # Node
 node_modules/
 apps/theme/node_modules/
-apps/theme/package-lock.json
-apps/theme/package.json
+
 
 # Tailwind Dev files
 apps/theme/tailwind.config.js
