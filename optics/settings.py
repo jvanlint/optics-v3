@@ -43,14 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.core',
     'apps.mission_parser',
+    'apps.theme',
+    'apps.user_profile',
     # Allauth apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # Tailwind app
     'tailwind',
-    'apps.theme',
-    'apps.user_profile',
+    #Admin Import/Export
+    'import_export',
 ]
 
 MIDDLEWARE = [
