@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.discord',
     # Tailwind app
     'tailwind',
     #Admin Import/Export
@@ -214,4 +216,4 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = "Optics App <" + config("EMAIL_HOST_USER") + ">"
 
-SITE_ID = 1
+SITE_ID = 2
