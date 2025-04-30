@@ -31,3 +31,12 @@ whitenoise==6.7.0
 
 # Environment variable management
 python-decouple==3.8
+
+# Admin import/export functionality
+django-import-export==3.3.1  
+
+# Utilities
+Pillow>=10.0.0          # Image processing
+pytz==2023.3            # Timezone support
+django-resized==1.0.2   # Image resizing for models
+psutil==7.0.0           # System resource monitoring

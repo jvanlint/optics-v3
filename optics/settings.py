@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # Tailwind app
     'tailwind',
     'apps.theme',
+    'apps.user_profile',
 ]
 
 MIDDLEWARE = [
