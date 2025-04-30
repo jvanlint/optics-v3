@@ -165,12 +165,34 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_FORMS = {
+    'signup': 'apps.user_profile.forms.CustomSignupForm',
+}
 
 # Remember me functionality
 # None: No default (user must choose)
 # False: Session cookies (forget at browser close)
 # True: Persistent cookies (remember user)
 ACCOUNT_SESSION_REMEMBER = True
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'discord': {
+        'SCOPE': [
+            'identify',
+            'email',
+        ],
+    }
+}
 
 # Tailwind configuration
 TAILWIND_APP_NAME = 'apps.theme'
@@ -181,3 +203,5 @@ INTERNAL_IPS = [
     "0.0.0.0",
     "localhost",
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
