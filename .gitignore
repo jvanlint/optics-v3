@@ -141,6 +141,8 @@ apps/theme/node_modules/
 apps/theme/tailwind.config.js
 apps/theme/postcss.config.js
 
+staticfiles/
+
 # Explicitly allow built CSS to be committed
 !apps/theme/static/
 !apps/theme/static/css/
