@@ -29,4 +29,5 @@ urlpatterns = [
     path('', root_view, name='root'),
     path('home/', TemplateView.as_view(template_name='home.html'), name='home'),
     path('accounts/', include('allauth.urls')),
+    path('', include('apps.core.urls')),  # Add this line
 ]

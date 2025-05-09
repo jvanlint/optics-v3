@@ -23,7 +23,9 @@
         "ms-python.python",
         "ms-python.debugpy",
         "charliermarsh.ruff",
-        "ms-vscode.vscode-speech"
+        "ms-vscode.vscode-speech",
+        "whizkydee.material-palenight-theme",
+        "esbenp.prettier-vscode"
       ]
     }
   },
